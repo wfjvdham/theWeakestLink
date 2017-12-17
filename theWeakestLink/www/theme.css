@@ -1,3 +1,10 @@
 .current_score {
   background-color: red;
 }
+.players {
+  display: flex;
+  flex-wrap: wrap;
+}
+.player_buttons {
+  padding: 20px;
+}
