@@ -8,3 +8,9 @@
 .player_buttons {
   padding: 20px;
 }
+table {
+  text-align: right;
+}
+td {
+  padding: 1px;
+}

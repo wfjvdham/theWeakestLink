@@ -70,14 +70,16 @@ observePlayerButtons <- function (input, output, session, rv) {
   output$stats <- renderUI({
     n_goed <- rv_player[[session$ns("stats")]]$n_goed
     n_fout <- rv_player[[session$ns("stats")]]$n_fout
-    perc_goed <- round(n_goed / (n_goed + n_fout) * 100)
+    perc_goed <- 0
+    if (n_goed + n_fout > 0) {
+      perc_goed <- round(n_goed / (n_goed + n_fout) * 100)
+    } 
     cash <- rv_player[[session$ns("stats")]]$cash
-    tagList(
-      div(paste("Aantal goede antwoorden:", n_goed)),
-      div(paste("Aantal foute antwoorden:", n_fout)),
-      div(paste("Percentage correct:", perc_goed, "%")),
-      div(paste("Cash verzameld:", cash))
-    )
+    htmlTemplate("templates/stats.html",
+                 n_goed = n_goed,
+                 n_fout = n_fout,
+                 perc_goed = perc_goed,
+                 cash = cash)
   })
 }
 

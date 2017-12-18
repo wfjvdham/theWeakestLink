@@ -6,6 +6,7 @@ source("functions.R")
 
 ui <- fluidPage(
   theme = "theme.css",
+  tags$head(tags$script(src = "script.js")),
   useShinyjs(),
   titlePanel("De Zwakste Schakel"),
   tabsetPanel(
@@ -22,7 +23,7 @@ ui <- fluidPage(
       )
     ), 
     tabPanel("Spelers Statestieken",
-      div(class = "players",
+      div(id = "playes_list", class = "players",
         playerStatistics("Dennis"),
         playerStatistics("Jasper"),
         playerStatistics("Lieke"),
