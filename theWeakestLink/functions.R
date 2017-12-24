@@ -18,18 +18,6 @@ playerStatistics <- function(id) {
   )
 }
 
-removeAllClasses <- function () {
-  removeClass("1000", "current_score")
-  removeClass("800", "current_score")
-  removeClass("600", "current_score")
-  removeClass("450", "current_score")
-  removeClass("300", "current_score")
-  removeClass("200", "current_score")
-  removeClass("100", "current_score")
-  removeClass("50", "current_score")
-  removeClass("0", "current_score")
-}
-
 observePlayerButtons <- function (input, output, session, rv) {
   
   rv_player <- reactiveValues()
