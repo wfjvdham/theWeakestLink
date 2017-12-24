@@ -3,9 +3,9 @@ playerButtons <- function(id) {
   
   div(class="player_buttons",
     h1(id),
-    actionButton(ns("goed"), "Goed"),
-    actionButton(ns("fout"), "Fout"),
-    actionButton(ns("bank"), "Bank")
+    actionButton(ns("goed"), "Goed", class="btn btn-success"),
+    actionButton(ns("fout"), "Fout", class="btn btn-danger"),
+    actionButton(ns("bank"), "Bank", class="btn btn-warning")
   )
 }
 
