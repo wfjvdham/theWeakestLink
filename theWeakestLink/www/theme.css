@@ -14,3 +14,9 @@ table {
 td {
   padding: 1px;
 }
+#current_score {
+  height: 500px;
+}
+.scores {
+  position: relative;
+}

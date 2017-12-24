@@ -1,6 +1,17 @@
+/*external js
+https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js
+https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js
+*/
+
 $(document).on('shiny:inputchanged', function(event) {
-  console.log("start function")
-  var myList = $('#playes_list')
+  var current_scores = document.getElementsByClassName('current_score')
+  TweenLite.to(current_scores, 2, {top:"300px", backgroundColor:"black", borderBottomColor:"#90e500", color:"white"})
+  /*Array.prototype.forEach.call(current_scores, function(current_score) {
+    TweenLite.to(current_score, 2, {left:"300px", backgroundColor:"black", borderBottomColor:"#90e500", color:"white"})
+    console.log(current_score.tagName)
+  })*/
+
+  var myList = $('#players_list')
   var listItems = myList.children('div').get()
   listItems.sort(function(a, b) {
     var percA = Number($(a).find('tr:nth-child(3) td+ td').text())
