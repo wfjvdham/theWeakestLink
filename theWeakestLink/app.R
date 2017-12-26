@@ -18,11 +18,11 @@ ui <- fluidPage(
       uiOutput("total_score"),
       div(class = "players",
         playerButtons("Dennis"),
+        playerButtons("Jannes"),
         playerButtons("Jasper"),
         playerButtons("Lieke"),
-        playerButtons("Piet"),
         playerButtons("Lies"),
-        playerButtons("Jannes")
+        playerButtons("Piet")
       )
     ), 
     tabPanel("Spelers Statestieken",
