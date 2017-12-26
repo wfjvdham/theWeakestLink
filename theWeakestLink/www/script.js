@@ -11,7 +11,7 @@ window.onload = function() {
   Array.prototype.forEach.call(goed_buttons, function(goed_button) {
     goed_button.onclick = function() {
       nGoed++
-      for (i = 8; i >= (8 - nGoed); i--) {
+      for (i = 7; i >= (8 - nGoed); i--) {
         tweens[i].play()
       }
     }
@@ -43,10 +43,14 @@ window.onload = function() {
 $(document).on('shiny:inputchanged', function(event) {
   var scores = document.getElementsByClassName('scores')
   if (tweens.length == 0) {
-    Array.prototype.forEach.call(scores, function(score) {
-      var tween = TweenLite.to(score, 2, {top:"100px", backgroundColor:"black"})
-      tween.pause()
-      tweens.push(tween)
+    Array.prototype.forEach.call(scores, function(score, index) {
+      var tween = TweenLite.to(score, 2, {top:"100px"})
+      if (index == 8) {
+        tween.play(2)
+      } else {
+        tween.pause()
+        tweens.push(tween)
+      }
     })
   }
 
