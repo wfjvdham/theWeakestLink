@@ -44,7 +44,7 @@ $(document).on('shiny:inputchanged', function(event) {
   var scores = document.getElementsByClassName('scores')
   if (tweens.length == 0) {
     Array.prototype.forEach.call(scores, function(score, index) {
-      var tween = TweenLite.to(score, 2, {top:"100px"})
+      var tween = TweenLite.to(score, 2, {top:"50px", backgroundColor: "#99565D"})
       if (index == 8) {
         tween.play(2)
       } else {

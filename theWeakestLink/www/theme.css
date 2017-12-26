@@ -1,9 +1,16 @@
+body {
+  color: white;
+  background-color: #00383A;
+}
 .players {
   display: flex;
   flex-wrap: wrap;
 }
+#players_list {
+  flex-direction: column;
+}
 .player_buttons {
-  padding: 20px;
+  padding: 13px;
 }
 table {
   text-align: right;
@@ -11,9 +18,23 @@ table {
 td {
   padding: 1px;
 }
+p {
+  text-align: center;
+  font-size: 30px;
+}
 #current_score {
-  height: 300px;
+  height: 385px;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
 }
 .scores {
   position: relative;
+  border: 1px solid black;
+  width: 80px;
+  border-radius: 30px;
+  background-color: #639EA1;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 25px;
 }
