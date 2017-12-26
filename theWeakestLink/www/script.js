@@ -3,27 +3,52 @@ https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js
 https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js
 */
 
+var tweens = []
+var nGoed = 0
+
 window.onload = function() {
-  console.log("onload")
+  var goed_buttons = document.querySelectorAll('.btn-default')
+  Array.prototype.forEach.call(goed_buttons, function(goed_button) {
+    goed_button.onclick = function() {
+      nGoed++
+      for (i = 8; i >= (8 - nGoed); i--) {
+        tweens[i].play()
+      }
+    }
+  })
+
   var fout_buttons = document.querySelectorAll('.btn-danger')
-  console.log(fout_buttons)
   Array.prototype.forEach.call(fout_buttons, function(fout_button) {
-    console.log("fout_button")
-    console.log(fout_button)
     fout_button.onclick = function() {
-      console.log("clicked on fout button")
+      nGoed = 0
+      Array.prototype.forEach.call(tweens, function(tween) {
+        tween.restart()
+        tween.pause()
+      })
+    }
+  })
+
+  var bank_buttons = document.querySelectorAll('.btn-warning')
+  Array.prototype.forEach.call(bank_buttons, function(bank_button) {
+    bank_button.onclick = function() {
+      nGoed = 0
+      Array.prototype.forEach.call(tweens, function(tween) {
+        tween.restart()
+        tween.pause()
+      })
     }
   })
 }
 
 $(document).on('shiny:inputchanged', function(event) {
-  console.log("on input changed")
-  var current_scores = document.getElementsByClassName('current_score')
-  TweenLite.to(current_scores, 2, {top:"300px", backgroundColor:"black", borderBottomColor:"#90e500", color:"white"})
-  /*Array.prototype.forEach.call(current_scores, function(current_score) {
-    TweenLite.to(current_score, 2, {left:"300px", backgroundColor:"black", borderBottomColor:"#90e500", color:"white"})
-    console.log(current_score.tagName)
-  })*/
+  var scores = document.getElementsByClassName('scores')
+  if (tweens.length == 0) {
+    Array.prototype.forEach.call(scores, function(score) {
+      var tween = TweenLite.to(score, 2, {top:"100px", backgroundColor:"black"})
+      tween.pause()
+      tweens.push(tween)
+    })
+  }
 
   var myList = $('#players_list')
   var listItems = myList.children('div').get()
