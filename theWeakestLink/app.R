@@ -17,28 +17,32 @@ ui <- fluidPage(
       uiOutput("current_score"),
       uiOutput("total_score"),
       div(class = "players",
+        playerButtons("Bruna"),
         playerButtons("Dennis"),
         playerButtons("Jannes"),
         playerButtons("Jasper"),
         playerButtons("Lieke"),
         playerButtons("Lies"),
+        playerButtons("Lindsey"),
         playerButtons("Piet")
       )
     ), 
     tabPanel("Spelers Statestieken",
       div(id = "players_list", class = "players",
+        playerStatistics("Bruna"),
         playerStatistics("Dennis"),
+        playerStatistics("Jannes"),
         playerStatistics("Jasper"),
         playerStatistics("Lieke"),
-        playerStatistics("Piet"),
         playerStatistics("Lies"),
-        playerStatistics("Jannes")
+        playerStatistics("Lindsey"),
+        playerStatistics("Piet")
       )
     )
   )
 )
 
-server <- function(input, output, session) {
+server <- function (input, output, session, rv) {
   
   rv <- reactiveValues(
     current_score = 0,
@@ -46,11 +50,13 @@ server <- function(input, output, session) {
     player_stats = 0
   )
   
+  callModule(observePlayerButtons, "Bruna", rv)
   callModule(observePlayerButtons, "Dennis", rv)
   callModule(observePlayerButtons, "Jasper", rv)
   callModule(observePlayerButtons, "Lieke", rv)
   callModule(observePlayerButtons, "Piet", rv)
   callModule(observePlayerButtons, "Lies", rv)
+  callModule(observePlayerButtons, "Lindsey", rv)
   callModule(observePlayerButtons, "Jannes", rv)
   
   observe({
