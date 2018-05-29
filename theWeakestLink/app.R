@@ -1,8 +1,11 @@
 library(shiny)
 library(shinyjs)
 library(dplyr)
+library(purrr)
 
 source("functions.R")
+
+PLAYERS <- c("Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6")
 
 ui <- fluidPage(
   theme = "theme.css",
@@ -17,26 +20,12 @@ ui <- fluidPage(
       uiOutput("current_score"),
       uiOutput("total_score"),
       div(class = "players",
-        playerButtons("Bruna"),
-        playerButtons("Dennis"),
-        playerButtons("Jannes"),
-        playerButtons("Jasper"),
-        playerButtons("Lieke"),
-        playerButtons("Lies"),
-        playerButtons("Lindsey"),
-        playerButtons("Piet")
+          map(PLAYERS, playerButtons)
       )
     ), 
     tabPanel("Spelers Statestieken",
       div(id = "players_list", class = "players",
-        playerStatistics("Bruna"),
-        playerStatistics("Dennis"),
-        playerStatistics("Jannes"),
-        playerStatistics("Jasper"),
-        playerStatistics("Lieke"),
-        playerStatistics("Lies"),
-        playerStatistics("Lindsey"),
-        playerStatistics("Piet")
+          map(PLAYERS, playerStatistics)
       )
     )
   )
@@ -50,14 +39,7 @@ server <- function (input, output, session, rv) {
     player_stats = 0
   )
   
-  callModule(observePlayerButtons, "Bruna", rv)
-  callModule(observePlayerButtons, "Dennis", rv)
-  callModule(observePlayerButtons, "Jasper", rv)
-  callModule(observePlayerButtons, "Lieke", rv)
-  callModule(observePlayerButtons, "Piet", rv)
-  callModule(observePlayerButtons, "Lies", rv)
-  callModule(observePlayerButtons, "Lindsey", rv)
-  callModule(observePlayerButtons, "Jannes", rv)
+  map(PLAYERS, ~ callModule(observePlayerButtons, .x, rv))
   
   observe({
     addClass(as.character(rv$current_score), "current_score")
