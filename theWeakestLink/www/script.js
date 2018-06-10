@@ -1,42 +1,30 @@
-/*external js
-https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js
-https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js
-*/
-
 var tweens = []
-var nGoed = 0
+var nCorrect = 0
 
 window.onload = function() {
-  var goed_buttons = document.querySelectorAll('.btn-default')
-  Array.prototype.forEach.call(goed_buttons, function(goed_button) {
-    goed_button.onclick = function() {
-      nGoed++
-      for (i = 7; i >= (8 - nGoed); i--) {
-        tweens[i].play()
-      }
+  var correct_buttons = document.querySelectorAll('.btn-default')
+  Array.prototype.forEach.call(correct_buttons, function(correct_button) {
+    correct_button.onclick = function() {
+      nCorrect++
+      tweens[8 - nCorrect].play()
     }
   })
 
-  var fout_buttons = document.querySelectorAll('.btn-danger')
-  Array.prototype.forEach.call(fout_buttons, function(fout_button) {
-    fout_button.onclick = function() {
-      nGoed = 0
-      Array.prototype.forEach.call(tweens, function(tween) {
-        tween.restart()
-        tween.pause()
-      })
-    }
+  var reset_tweens = function() {
+    nCorrect = 0
+    Array.prototype.forEach.call(tweens, function(tween) {
+      tween.restart()
+      tween.pause()
+    })
+  }
+  var error_buttons = document.querySelectorAll('.btn-danger')
+  Array.prototype.forEach.call(error_buttons, function(error_button) {
+    error_button.onclick = reset_tweens
   })
 
   var bank_buttons = document.querySelectorAll('.btn-warning')
   Array.prototype.forEach.call(bank_buttons, function(bank_button) {
-    bank_button.onclick = function() {
-      nGoed = 0
-      Array.prototype.forEach.call(tweens, function(tween) {
-        tween.restart()
-        tween.pause()
-      })
-    }
+    bank_button.onclick = reset_tweens
   })
 }
 
